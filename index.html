@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>CompressionCalc</title>
+		<meta name="viewport" content="width=device-width">
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	
+	<body>	
+		<header class="container masthead">
+				<div class="row">
+					<h1 class="span12">CompressionCalc</h1>
+					<h2 class="span12">a video compression calculator</h2>
+				</div>
+		</header>
+			
+		<div class="container">
+			<div class="row">
+				<h3 class="span8 offset4">Select Your Operation Below</h3>
+				</hr>
+			</div>
+			<div class="row">
+				<div class="span10 offset2">
+				<!-- Nav Buttons -->
+					<div class="row">
+						<div class="btn-group">
+							<a id="showCBR" class="span4 btn btn-large" href="#">Calculate Bit Rates</a>
+							<a id="showCFS" class="span4 btn btn-large" href="#">Calculate File Size</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<br/>
+			
+			<div class="row">
+				<div id="calc" class="span10 offset1 well hide">
+					
+					<!-- #FindBitRate -->
+					<form id="fbr" class="hide">
+						<div class="row">
+							<div class="span4 offset1">
+								<label>Desired File Size (MB)</label>
+								<input type="text" id="dfs" name="dfs" class="span4 offset1" placeholder="Enter A Number...">
+							</div>
+							<div class="span4">
+								<label> Total Run Time (seconds)</label>
+								<input type="text" id="cbr-trt" name="cbrTRT" class="span4 offset2" placeholder="Enter A Number...">
+							</div>
+						</div>
+						<div class="row">
+							<div class="span3 offset4">
+								<a data-toggle="modal" href="#modal" id="cbr" class="btn btn-large btn-primary">Calculate Bit Rates</a>
+							</div>
+						</div>
+					</form>
+					
+					<!-- #FindFileSize -->
+					<form id="ffs" class="hide">
+						<div class="row">
+							<div class="span8 offset1">
+								<label class="span3">Audio Bit Rate (kbps)</label>
+								<input type="text" id="abr" name="abr" class="span4" placeholder="Enter A Number...">
+							</div>
+						</div>
+						<div class="row">
+							<div class="span8 offset1">
+								<label class="span3">Video Bit Rate (kbps)</label>
+								<input type="text" id="vbr" name="vbr" class="span4" placeholder="Enter A Number...">
+							</div>
+						</div>
+						<div class="row">
+							<div class="span8 offset1">
+								<label class="span3">Total Run Time  (sec)</label>
+								<input type="text" id="cfs-trt" name="cfsTRT" class="span4" placeholder="Enter A Number...">
+							</div>
+						</div>
+						<div class="row">
+							<div class="span4 offset4">
+								<a data-toggle="modal" href="#modal" id="cfs" class="btn btn-large btn-primary">Calculate File Size</a>
+							</div>
+						</div>
+					</form>
+					
+					<!-- #Modal Window -->		
+					<div id="modal" class="hide modal fade in">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">x</button>
+							<h3>Modal Header Test</h3>
+						</div>
+						<div class="modal-body">
+						</div>
+						<div class="modal-footer">
+							<a href="#" class="btn" data-dismiss="modal">Close</a>
+						</div>
+					</div>
+			
+				</div> <!-- content container -->
+			</div>
+		</div>
+	</body>
+	
+	<script src="js/jquery-1.8.3.min.js" type="text/javascript"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/jquery.validate.js" type="text/javascript"></script>
+	<script src="js/main.js" type="text/javascript"></script>
+	<script>
+        var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+        (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+
+</html>

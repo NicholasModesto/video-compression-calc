@@ -1,0 +1,77 @@
+body {
+	background: url(../img/bg.jpg) repeat-x scroll left top;
+}
+
+header.masthead {
+	 
+	 margin: 5em auto 2em;
+	 
+	 h1 {
+		color:#454545;
+		font-family: 'Lato', Helvetica, Arial;
+		font-weight: 700;
+		font-size: 8em;
+		text-align: center;
+	}
+
+	h2 {
+		color:#656565;
+		font-family: 'Lato', Helvetica, Arial;
+		font-weight: 300;
+		font-size: 4em;
+		line-height: 2em;
+		text-align: center;
+	}
+}
+
+div.btn-group {
+
+	margin: 0 0 2.5em 0;		
+			
+		a {
+			font-size: 1.5em;
+			font-family: 'Lato', Helvetica, Arial;
+			font-weight: 300;
+		}
+}
+
+#calc.well {
+	min-height: 12.5em;
+}
+
+h3 {
+	color: #08C;
+	font-family: 'Lato', Helvetica, Arial;
+	font-weight: 700;
+	font-size: 2em;
+	line-height: 2.5em;
+}
+
+label {
+	display: inline;
+	font-family: 'Lato', Helvetica, Arial;
+	font-weight: 300;
+	font-size: 1.5em;
+	line-height: 3.0em;
+}
+
+label.error {
+	color: #b94a48;
+	display:block;
+	font-family: 'Lato', Helvetica, Arial;
+	font-weight: 300;
+	font-size: 1.2em;
+	line-height: 1.1em;
+}
+
+input { 
+	display: inline;
+	font-family: 'Lato', Helvetica, Arial;
+	font-weight: 700;
+	font-size: 1.25em !important;
+	height: 3em !important; 
+}
+
+#cfs, #cbr {
+	margin: 2em 0 0 0;
+}

@@ -1,4 +1,4 @@
 video-compression-calc
 ======================
 
-helping people calculate video compressions
+helping people calculate their video compressions
