@@ -1,85 +1,77 @@
-$(document).ready(function() {
-			
-	$('#showCBR').click( function() {
-	$('#showCBR').addClass("selected");
-		$("#showCFS").removeClass("selected");
-		$('#calc').fadeIn();
-		$('#ffs').fadeOut();
-		$('#fbr').delay(400).fadeIn('fast');
-	});
-	
-	$('#showCFS').click( function() {
-		$('#showCFS').addClass("selected");
-		$("#showCBR").removeClass("selected");
-		$('#calc').fadeIn();
-		$('#fbr').fadeOut();
-		$('#ffs').delay(400).fadeIn('fast');
-	});
-	
-	$("#fbr").validate({
-			onsubmit: false,
-			rules: {
-				dfs: {
-					required: true,
-					number: true
-				},
-				cbrTRT: {
-					required: true,
-					number: true
-				}
-			}
-		});
-		
-	$("#ffs").validate({
-			onsubmit: false,
-			rules: {
-				abr: {
-					required: true,
-					number: true
-				},
-				vbr: {
-					required: true,
-					number: true
-				},
-				cfsTRT: {
-					required: true,
-					number: true
-				}
-			}
-		});
-	
-	$('#cbr').click(function(){
-		var fsize, trt, tbr, vbr = 0;
-		var abr = 96;
-		
-		fsize = document.getElementById('dfs').value;
-		trt = document.getElementById('cbr-trt').value;
-		
-		tbr = (fsize * 8000) / trt; //converts fsize MB -> kb & divides by time to create a kbps unit
-		vbr = parseInt(tbr - abr, 10);
+var calc = {};
+calc.bitrate = function() {
+	this.audioRate = 96;
+	this.fileSize = document.getElementById('dfs').value;
+	this.runtime = document.getElementById('cbr-trt').value;
+	this.totalBitRate = (this.fileSize * 8000) / this.runtime;
+	this.videoRate = parseInt(this.totalBitRate - this.audioRate, 10);
 
-		$('#modal .modal-header h3').html('Find Bit Rates');
-		
-		$('#modal .modal-body').html(function() {
-			return '<table class="table table-striped"><tbody><tr><td>Audio Bit Rate</td><td><strong>' + abr + ' kbps</strong></td></tr><tr><td>Video Bit Rate</td><td><strong>' + vbr + ' kbps</strong></td></tr></tbody></table>';
-		});
+	var answer = "<table class='table table-striped'><tbody><tr><td>Audio Bit Rate</td><td><strong>" + this.audioRate + " kbps</strong></td></tr><tr><td>Video Bit Rate</td><td><strong>" + this.videoRate + " kbps</strong></td></tr></tbody></table>";
+	this.returnAnswer('Find Bit Rate', answer);
+};
+calc.filesize = function() {
+	this.audioRate = parseInt (document.getElementById('abr').value, 10);
+	this.videoRate = parseInt (document.getElementById('vbr').value, 10);
+	this.runtime = parseInt (document.getElementById('cfs-trt').value, 10);
+	this.fileSize = ((this.audioRate + this.videoRate) * this.runtime)/8000;
+
+	var answer = "<table class='table table-striped'><tbody><tr><td>Audio Bit Rate</td><td>" + this.audioRate + " kbps</td></tr><tr><td>Video Bit Rate</td><td>" + this.videoRate + " kbps</td></tr><tr><td>Total Run Time:</td><td>" + this.runtime + " seconds</td></tr><tr><td><strong>File Size</strong></td><td><strong>" + this.fileSize + " MB</strong></td></tr></tbody></table>";
+	this.returnAnswer('Find File Size', answer);
+};
+calc.returnAnswer = function(title,answer) {
+	this.title = title;
+	this.answer = answer;
+	$('#modal .modal-header h3').html( this.title );
+	$('#modal .modal-body').html( this.answer );
+};
+
+$('#showCBR').click( function() {
+	$('#showCBR').toggleClass("selected");
+	$("#showCFS").toggleClass("selected");
+	$('#calc').fadeIn();
+	$('#ffs').fadeOut();
+	$('#fbr').delay(400).fadeIn('fast');
+});
+$('#showCFS').click( function() {
+	$('#showCFS').toggleClass("selected");
+	$("#showCBR").toggleClass("selected");
+	$('#calc').fadeIn();
+	$('#fbr').fadeOut();
+	$('#ffs').delay(400).fadeIn('fast');
+});
+$("#fbr").validate({
+		onsubmit: false,
+		rules: {
+			dfs: {
+				required: true,
+				number: true
+			},
+			cbrTRT: {
+				required: true,
+				number: true
+			}
+		}
 	});
-	
-	$('#cfs').click(function(){
-		var fsize, trt, abr, vbr = 0;
-		
-		abr = parseInt (document.getElementById('abr').value, 10);
-		vbr = parseInt (document.getElementById('vbr').value, 10);
-		trt = parseInt (document.getElementById('cfs-trt').value, 10);
-			
-		fsize = (abr + vbr) * trt; // finds total file size in kb
-		fsize = fsize / 8000; // converts fsize from kb -> MB
-		
-		$('#modal .modal-header h3').html('Find File Size');
-		
-		$('#modal .modal-body').html(function() {
-			return '<table class="table table-striped"><tbody><tr><td>Audio Bit Rate</td><td>' + abr + ' kbps</td></tr><tr><td>Video Bit Rate</td><td>' + vbr + ' kbps</td></tr><tr><td>Total Run Time:</td><td>' + trt + ' seconds</td></tr><tr><td><strong>File Size</strong></td><td><strong>' + fsize + ' MB</strong></td></tr></tbody></table>';
-		});
+$("#ffs").validate({
+		onsubmit: false,
+		rules: {
+			abr: {
+				required: true,
+				number: true
+			},
+			vbr: {
+				required: true,
+				number: true
+			},
+			cfsTRT: {
+				required: true,
+				number: true
+			}
+		}
 	});
-	
+$('#cbr').click(function(){
+	calc.bitrate();
+});
+$('#cfs').click(function(){
+	calc.filesize();
 });
