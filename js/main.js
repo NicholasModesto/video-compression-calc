@@ -25,53 +25,26 @@ calc.returnAnswer = function(title,answer) {
 	$('#modal .modal-body').html( this.answer );
 };
 
-$('#showCBR').click( function() {
-	$('#showCBR').toggleClass("selected");
-	$("#showCFS").toggleClass("selected");
-	$('#calc').fadeIn();
-	$('#ffs').fadeOut();
-	$('#fbr').delay(400).fadeIn('fast');
-});
-$('#showCFS').click( function() {
-	$('#showCFS').toggleClass("selected");
-	$("#showCBR").toggleClass("selected");
-	$('#calc').fadeIn();
-	$('#fbr').fadeOut();
-	$('#ffs').delay(400).fadeIn('fast');
-});
-$("#fbr").validate({
-		onsubmit: false,
-		rules: {
-			dfs: {
-				required: true,
-				number: true
-			},
-			cbrTRT: {
-				required: true,
-				number: true
-			}
-		}
+$(document).ready(function () {
+	$('#showCBR').click( function() {
+		$('#showCBR').toggleClass("selected");
+		$("#showCFS").toggleClass("selected");
+		$('#calc').fadeIn();
+		$('#ffs').fadeOut();
+		$('#fbr').delay(400).fadeIn('fast');
 	});
-$("#ffs").validate({
-		onsubmit: false,
-		rules: {
-			abr: {
-				required: true,
-				number: true
-			},
-			vbr: {
-				required: true,
-				number: true
-			},
-			cfsTRT: {
-				required: true,
-				number: true
-			}
-		}
+	$('#showCFS').click( function() {
+		$('#showCFS').toggleClass("selected");
+		$("#showCBR").toggleClass("selected");
+		$('#calc').fadeIn();
+		$('#fbr').fadeOut();
+		$('#ffs').delay(400).fadeIn('fast');
 	});
-$('#cbr').click(function(){
-	calc.bitrate();
+	$('#cbr').click(function(){
+		calc.bitrate();
+	});
+	$('#cfs').click(function(){
+		calc.filesize();
+	});
 });
-$('#cfs').click(function(){
-	calc.filesize();
-});
+
